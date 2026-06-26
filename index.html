@@ -1,1 +1,854 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza World -You'll Love It</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d32f2f 0%, #f57c00 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ffeb3b;
+            color: #333;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(211, 47, 47, 0.7), rgba(245, 124, 0, 0.7)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><circle cx="100" cy="100" r="80" fill="%23ff6f00" opacity="0.1"/><circle cx="1100" cy="500" r="120" fill="%23d32f2f" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            background-color: #ffeb3b;
+            color: #333;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            background-color: #fdd835;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #d32f2f;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pizza-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .pizza-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f57c00, #d32f2f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .pizza-info {
+            padding: 1.5rem;
+        }
+
+        .pizza-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .pizza-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .pizza-price {
+            font-size: 1.5rem;
+            color: #d32f2f;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .size-select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideInDown 0.3s;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: #000;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #d32f2f;
+            clear: both;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: #f9f9f9;
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .cart-item-size {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: #d32f2f;
+            margin-right: 1rem;
+        }
+
+        .remove-btn {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            font-size: 1.1rem;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #fff3e0;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+
+        .checkout-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Order Form */
+        .order-form {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #f0f0f0;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 0.5rem;
+            color: #d32f2f;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .success-message {
+            display: none;
+            background-color: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav>
+            <div class="logo">🍕 Pizza World</div>
+            <ul class="nav-menu">
+                <li><a onclick="scrollToSection('menu')">Menu</a></li>
+                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                <li class="cart-icon" onclick="openCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Pizza World</h1>
+        <p>Delicious, Fresh, & Made with Love</p>
+        <button class="cta-button" onclick="scrollToSection('menu')">Order Now</button>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Pizza cards will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <h3>Location</h3>
+                    <p>123 Pizza Street<br>Flavor City, FC 12345</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📞</div>
+                    <h3>Phone</h3>
+                    <p>(555) 123-4567</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">⏰</div>
+                    <h3>Hours</h3>
+                    <p>Mon-Sun: 11AM - 11PM</p>
+                </div>
+            </div>
+            <div class="contact-item" style="max-width: 600px; margin: 0 auto;">
+                <div class="contact-item-icon">✉️</div>
+                <h3>Email</h3>
+                <p>info@pizzaworld.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCart()">&times;</span>
+            <h2 class="modal-title">Your Cart</h2>
+            <div class="success-message" id="successMessage">
+                ✓ Order placed successfully! Thank you for your purchase!
+            </div>
+            <div id="cartItems">
+                <div class="cart-empty">Your cart is empty</div>
+            </div>
+            <div id="cartTotalContainer" style="display: none;">
+                <div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
+                <div class="order-form" id="orderForm">
+                    <h3 style="color: #d32f2f; margin-bottom: 1rem;">Delivery Information</h3>
+                    <div class="form-group">
+                        <label for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number *</label>
+                        <input type="tel" id="customerPhone" placeholder="(555) 123-4567" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Delivery Address *</label>
+                        <input type="text" id="customerAddress" placeholder="123 Main Street, Apt 4" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialInstructions">Special Instructions</label>
+                        <textarea id="specialInstructions" placeholder="Any special requests?"></textarea>
+                    </div>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn" onclick="toggleOrderForm()">Proceed to Checkout</button>
+                <button class="checkout-btn" id="submitBtn" style="display: none; background-color: #4caf50;" onclick="submitOrder()">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Pizza World Restaurant. All rights reserved. | Enjoy Every Slice! 🍕</p>
+    </footer>
+
+    <script>
+        // Pizza Menu Data
+        const pizzaMenu = [
+            {
+                id: 1,
+                name: "Margherita",
+                desc: "Classic pizza with tomato, mozzarella, and basil",
+                basePrice: 12.99,
+                image: "🍕"
+            },
+            {
+                id: 2,
+                name: "Pepperoni",
+                desc: "Loaded with fresh pepperoni slices",
+                basePrice: 14.99,
+                image: "🍕"
+            },
+            {
+                id: 3,
+                name: "Vegetarian",
+                desc: "Fresh vegetables, mushrooms, and olives",
+                basePrice: 13.99,
+                image: "🍕"
+            },
+            {
+                id: 4,
+                name: "Meat Lovers",
+                desc: "Pepperoni, sausage, bacon, and ham",
+                basePrice: 16.99,
+                image: "🍕"
+            },
+            {
+                id: 5,
+                name: "BBQ Chicken",
+                desc: "Grilled chicken, BBQ sauce, and red onions",
+                basePrice: 15.99,
+                image: "🍕"
+            },
+            {
+                id: 6,
+                name: "Hawaiian",
+                desc: "Ham and pineapple with mozzarella",
+                basePrice: 14.99,
+                image: "🍕"
+            }
+        ];
+
+        const sizes = {
+            "small": { label: "Small (10\")", multiplier: 1 },
+            "medium": { label: "Medium (12\")", multiplier: 1.3 },
+            "large": { label: "Large (14\")", multiplier: 1.6 },
+            "xlarge": { label: "X-Large (16\")", multiplier: 1.9 }
+        };
+
+        let cart = [];
+
+        // Initialize menu on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderMenu();
+        });
+
+        // Render Pizza Menu
+        function renderMenu() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = pizzaMenu.map(pizza => `
+                <div class="pizza-card">
+                    <div class="pizza-image">${pizza.image}</div>
+                    <div class="pizza-info">
+                        <div class="pizza-name">${pizza.name}</div>
+                        <div class="pizza-desc">${pizza.desc}</div>
+                        <div class="pizza-price">$${pizza.basePrice.toFixed(2)}</div>
+                        <select class="size-select" id="size-${pizza.id}">
+                            ${Object.entries(sizes).map(([key, size]) => 
+                                `<option value="${key}">${size.label}</option>`
+                            ).join('')}
+                        </select>
+                        <button class="add-to-cart-btn" onclick="addToCart(${pizza.id})">Add to Cart</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add to Cart
+        function addToCart(pizzaId) {
+            const pizza = pizzaMenu.find(p => p.id === pizzaId);
+            const sizeSelect = document.getElementById(`size-${pizzaId}`);
+            const selectedSize = sizeSelect.value;
+            const sizeInfo = sizes[selectedSize];
+            const price = (pizza.basePrice * sizeInfo.multiplier).toFixed(2);
+
+            const cartItem = {
+                id: cart.length,
+                pizzaId: pizza.id,
+                name: pizza.name,
+                size: sizeInfo.label,
+                price: parseFloat(price)
+            };
+
+            cart.push(cartItem);
+            updateCartCount();
+            showNotification(`${pizza.name} (${sizeInfo.label}) added to cart!`);
+        }
+
+        // Update Cart Count
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+
+        // Show Notification
+        function showNotification(message) {
+            alert(message);
+        }
+
+        // Open Cart
+        function openCart() {
+            document.getElementById('cartModal').style.display = 'block';
+            renderCart();
+        }
+
+        // Close Cart
+        function closeCart() {
+            document.getElementById('cartModal').style.display = 'none';
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('checkoutBtn').style.display = 'block';
+            document.getElementById('submitBtn').style.display = 'none';
+        }
+
+        // Render Cart Items
+        function renderCart() {
+            const cartItemsDiv = document.getElementById('cartItems');
+            const cartTotalContainer = document.getElementById('cartTotalContainer');
+            const successMessage = document.getElementById('successMessage');
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+                cartTotalContainer.style.display = 'none';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartItemsDiv.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-size">${item.size}</div>
+                    </div>
+                    <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `).join('');
+
+            document.getElementById('cartTotal').textContent = total.toFixed(2);
+            cartTotalContainer.style.display = 'block';
+        }
+
+        // Remove from Cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCart();
+        }
+
+        // Toggle Order Form
+        function toggleOrderForm() {
+            const orderForm = document.getElementById('orderForm');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (orderForm.style.display === 'none') {
+                orderForm.style.display = 'block';
+                checkoutBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            }
+        }
+
+        // Submit Order
+        function submitOrder() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+
+            if (!name || !phone || !address) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+
+            // Reset form and cart
+            setTimeout(() => {
+                cart = [];
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                document.getElementById('customerAddress').value = '';
+                document.getElementById('specialInstructions').value = '';
+                updateCartCount();
+                renderCart();
+                document.getElementById('orderForm').style.display = 'none';
+                document.getElementById('checkoutBtn').style.display = 'block';
+                document.getElementById('submitBtn').style.display = 'none';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                    closeCart();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Smooth Scroll to Section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                closeCart();
+            }
+        }
+    </script>
+</body>
+</html>
