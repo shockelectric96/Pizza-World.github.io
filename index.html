@@ -1,164 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza World - You'll Love It</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizza World - You'll Love It</title>
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Navigation Header -->
-    <header>
-        <nav>
-            <div class="logo">🍕 Pizza World</div>
+<header>
+<nav>
+<div class="logo">🍕 Pizza World</div>
 
-            <ul class="nav-menu">
-                <li><a onclick="scrollToSection('menu')">Menu</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+<ul class="nav-menu">
+<li><a onclick="scrollToSection('menu')">Menu</a></li>
+<li><a onclick="scrollToSection('contact')">Contact</a></li>
 
-                <li class="cart-icon" onclick="openCart()">
-                    🛒
-                    <span class="cart-count" id="cartCount">0</span>
-                </li>
-            </ul>
-        </nav>
-    </header>
+<li class="cart-icon" onclick="openCart()">
+🛒 <span id="cartCount">0</span>
+</li>
+</ul>
 
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Welcome to Pizza World</h1>
-        <p>Delicious, Fresh, & Made with Love</p>
+</nav>
+</header>
 
-        <button class="cta-button" onclick="scrollToSection('menu')">
-            Order Now
-        </button>
-    </section>
+<section class="hero">
+<h1>Welcome to Pizza World</h1>
+<p>Delicious, Fresh & Made with Love</p>
 
-    <!-- Menu -->
-    <section class="menu-section" id="menu">
-        <div class="container">
-            <h2 class="section-title">Our Menu</h2>
+<button class="cta-button" onclick="scrollToSection('menu')">
+Order Now
+</button>
+</section>
 
-            <div class="menu-grid" id="menuGrid">
-                <!-- JavaScript creates menu here -->
-            </div>
-        </div>
-    </section>
+<section class="menu-section" id="menu">
+<h2>Our Menu</h2>
 
-    <!-- Contact -->
-    <section class="contact-section" id="contact">
-        <div class="container">
+<div class="menu-grid" id="menuGrid"></div>
+</section>
 
-            <h2 class="section-title">Contact Us</h2>
+<section class="contact-section" id="contact">
+<h2>Contact Us</h2>
 
-            <div class="contact-content">
+<div class="contact-item">
+📍 Pizza World, Bouddha<br>
+Kathmandu, Nepal
+</div>
 
-                <div class="contact-item">
-                    <div class="contact-item-icon">📍</div>
-                    <h3>Location</h3>
-                    <p>Pizza World,Bouddha<br>Bouddha Pipalbot</p>
-                </div>
+<div class="contact-item">
+📞 +977 9800000000
+</div>
 
-                <div class="contact-item">
-                    <div class="contact-item-icon">📞</div>
-                    <h3>Phone</h3>
-                    <p>(14991933</p>
-              
+<div class="contact-item">
+✉ info@pizzaworld.com.np
+</div>
 
-            </div>
+</section>
 
-            <div class="contact-item" style="max-width:600px;margin:auto;">
-                <div class="contact-item-icon">✉️</div>
-                <h3>Email</h3>
-                <p>info@pizzaworld.com.np</p>
-            </div>
+<!-- CART -->
+<div id="cartModal" class="modal">
+<div class="modal-content">
 
-        </div>
-    </section>
+<span class="close-btn" onclick="closeCart()">&times;</span>
 
-    <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
+<h2>Your Cart</h2>
 
-        <div class="modal-content">
+<div id="cartItems"></div>
 
-            <span class="close-btn" onclick="closeCart()">&times;</span>
+<h3>Total: $<span id="cartTotal">0</span></h3>
 
-            <h2 class="modal-title">Your Cart</h2>
+<button onclick="checkout()">Checkout</button>
 
-            <div class="success-message" id="successMessage">
-                ✓ Order placed successfully!
-            </div>
+</div>
+</div>
 
-            <div id="cartItems">
-                <div class="cart-empty">Your cart is empty</div>
-            </div>
+<footer>
+<p>© 2026 Pizza World</p>
+</footer>
 
-            <div id="cartTotalContainer" style="display:none;">
-
-                <div class="cart-total">
-                    Total:
-                    $<span id="cartTotal">0.00</span>
-                </div>
-
-                <div class="order-form" id="orderForm">
-
-                    <h3>Delivery Information</h3>
-
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input id="customerName" type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input id="customerPhone" type="tel">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input id="customerAddress" type="text">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Special Instructions</label>
-                        <textarea id="specialInstructions"></textarea>
-                    </div>
-
-                </div>
-
-                <button class="checkout-btn"
-                        id="checkoutBtn"
-                        onclick="toggleOrderForm()">
-                    Proceed to Checkout
-                </button>
-
-                <button class="checkout-btn"
-                        id="submitBtn"
-                        style="display:none;background:#4caf50;"
-                        onclick="submitOrder()">
-                    Place Order
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>
-            © 2024 Pizza World Restaurant.
-            All rights reserved.
-        </p>
-    </footer>
-
-    <!-- External JavaScript -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
