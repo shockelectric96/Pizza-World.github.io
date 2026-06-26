@@ -1,145 +1,117 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Poppins,sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial;
 background:#fafafa;
 }
 
 header{
 background:#d62828;
 padding:15px 10%;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
 position:sticky;
 top:0;
 }
 
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
 .logo{
-color:#fff;
-font-size:28px;
+font-size:24px;
 font-weight:bold;
 }
 
-nav ul{
+.nav-menu{
 display:flex;
+gap:20px;
 list-style:none;
-gap:30px;
 align-items:center;
 }
 
-nav a{
+.nav-menu a{
 color:white;
 text-decoration:none;
+cursor:pointer;
 }
 
 .hero{
-height:90vh;
-background:url("images/pizza-banner.jpg") center/cover;
+height:80vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
+background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url("https://images.unsplash.com/photo-1513104890138-7c749659a591");
+background-size:cover;
 color:white;
+text-align:center;
 }
 
-.hero h1{
-font-size:60px;
-}
-
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:15px 30px;
+.cta-button{
+padding:12px 25px;
 background:#ffb703;
-color:black;
-text-decoration:none;
-border-radius:8px;
+border:none;
+cursor:pointer;
+border-radius:5px;
 }
 
-section{
-padding:80px 10%;
+.menu-section{
+padding:50px;
+text-align:center;
 }
 
 .menu-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .card{
 background:white;
-border-radius:12px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.15);
-text-align:center;
+padding:10px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 .card img{
 width:100%;
-height:220px;
-object-fit:cover;
+border-radius:10px;
 }
 
 .card button{
 background:#d62828;
 color:white;
 border:none;
-padding:12px 20px;
-margin:15px;
+padding:10px;
 cursor:pointer;
-border-radius:5px;
+width:100%;
 }
 
-.contact-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.contact-box{
-background:white;
-padding:25px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+.contact-section{
+padding:50px;
+background:#eee;
 text-align:center;
-}
-
-footer{
-background:#222;
-color:white;
-text-align:center;
-padding:20px;
 }
 
 .modal{
 display:none;
 position:fixed;
-left:0;
 top:0;
+left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.5);
+background:rgba(0,0,0,0.6);
 }
 
 .modal-content{
 background:white;
 width:400px;
-max-width:90%;
-margin:80px auto;
+margin:100px auto;
 padding:20px;
 border-radius:10px;
 }
 
-.close{
+.close-btn{
 float:right;
 cursor:pointer;
-font-size:28px;
+font-size:25px;
 }
