@@ -1,109 +1,76 @@
 const pizzas = [
-
 {
 name:"Margherita",
 price:8,
-image:"images/margherita.jpg"
+image:"https://images.unsplash.com/photo-1604382355076-af4b0eb60143"
 },
-
 {
 name:"Pepperoni",
 price:10,
-image:"images/pepperoni.jpg"
+image:"https://images.unsplash.com/photo-1513104890138-7c749659a591"
 },
-
 {
 name:"Veggie",
 price:9,
-image:"images/veggie.jpg"
+image:"https://images.unsplash.com/photo-1541745537411-b8046dc6d66c"
 },
-
 {
 name:"BBQ Chicken",
 price:12,
-image:"images/bbq.jpg"
+image:"https://images.unsplash.com/photo-1594007654729-407eedc4be65"
 }
-
 ];
 
-let cart=[];
+let cart = [];
 
-const menu=document.getElementById("menuGrid");
+const menuGrid = document.getElementById("menuGrid");
 
-pizzas.forEach((pizza,index)=>{
-
-menu.innerHTML+=`
-
+pizzas.forEach((p,i)=>{
+menuGrid.innerHTML += `
 <div class="card">
-
-<img src="${pizza.image}">
-
-<h3>${pizza.name}</h3>
-
-<p>$${pizza.price}</p>
-
-<button onclick="addToCart(${index})">
-
-Add to Cart
-
-</button>
-
+<img src="${p.image}">
+<h3>${p.name}</h3>
+<p>$${p.price}</p>
+<button onclick="addToCart(${i})">Add To Cart</button>
 </div>
-
 `;
-
 });
 
-function addToCart(index){
-
-cart.push(pizzas[index]);
-
+function addToCart(i){
+cart.push(pizzas[i]);
 updateCart();
-
 }
 
 function updateCart(){
+document.getElementById("cartCount").innerText = cart.length;
 
-document.getElementById("cartCount").innerText=cart.length;
-
-let items="";
-
-let total=0;
+let html = "";
+let total = 0;
 
 cart.forEach(item=>{
-
-items+=`<p>${item.name} - $${item.price}</p>`;
-
-total+=item.price;
-
+html += `<p>${item.name} - $${item.price}</p>`;
+total += item.price;
 });
 
-document.getElementById("cartItems").innerHTML=items||"Cart is empty";
-
-document.getElementById("cartTotal").innerText=total.toFixed(2);
-
+document.getElementById("cartItems").innerHTML = html || "Cart empty";
+document.getElementById("cartTotal").innerText = total;
 }
 
 function openCart(){
-
 document.getElementById("cartModal").style.display="block";
-
 }
 
 function closeCart(){
-
 document.getElementById("cartModal").style.display="none";
-
 }
 
 function checkout(){
-
-alert("Thank you for your order!");
-
-cart=[];
-
+alert("Order placed successfully 🍕");
+cart = [];
 updateCart();
-
 closeCart();
+}
 
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
